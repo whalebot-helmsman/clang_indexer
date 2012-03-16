@@ -41,3 +41,10 @@ target_link_libraries(clic_rm
     ${ZLIB_LIBRARIES}
     ${DB_LIBRARIES}
 )
+
+install(PROGRAMS clic_update.sh
+    DESTINATION bin
+)
+install(TARGETS clic_rm clic_add clic_clear
+    RUNTIME DESTINATION bin
+)
