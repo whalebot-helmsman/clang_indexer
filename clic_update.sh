@@ -23,7 +23,8 @@ fi
 add_to_index() {
     INDEX_FILE=`echo ${1}.i.gz | tr "/" "%"`
     echo clic_add index.db $INDEX_FILE $ADD_CXX_FLAGS  $1
-    clic_add index.db $INDEX_FILE $ADD_CXX_FLAGS $1 2>&1
+    clic_add index.db $INDEX_FILE $ADD_CXX_FLAGS $1 2>&1 |
+        grep -v "'linker' input unused when '-fsyntax-only' is present"
 }
 
 remove_from_index() {
