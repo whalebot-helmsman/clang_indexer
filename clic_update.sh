@@ -20,16 +20,21 @@ then
     ADD_CXX_FLAGS=`cat ${SOURCE_PATH}/.clang_complete`
 fi
 
+filename_for_user() {
+    local FILENAME=$1
+    echo ${FILENAME:${#SOURCE_PATH} + 1}
+}
+
 add_to_index() {
     INDEX_FILE=`echo ${1}.i.gz | tr "/" "%"`
-    echo clic_add index.db $INDEX_FILE $ADD_CXX_FLAGS  $1
+    echo "Adding '`filename_for_user $1`'"
     clic_add index.db $INDEX_FILE $ADD_CXX_FLAGS $1 2>&1 |
         grep -v "'linker' input unused when '-fsyntax-only' is present"
 }
 
 remove_from_index() {
     INDEX_FILE=`echo ${1}.i.gz | tr "/" "%"`
-    echo clic_rm index.db $INDEX_FILE
+    echo "Removing '`filename_for_user $1`'"
     clic_rm index.db $INDEX_FILE
     echo rm $INDEX_FILE
     rm $INDEX_FILE
