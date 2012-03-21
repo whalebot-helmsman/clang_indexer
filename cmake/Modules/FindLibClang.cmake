@@ -1,7 +1,6 @@
 find_path(LibClang_INCLUDE_DIR clang-c/Index.h)
 
-find_library(LibClang_LIBRARY NAMES clang
-            HINTS /usr/lib64/llvm)
+find_library(LibClang_LIBRARY NAMES liblibclang.so)
 
 set(LibClang_LIBRARIES ${LibClang_LIBRARY})
 set(LibClang_INCLUDE_DIRS ${LibClang_INCLUDE_DIR})
