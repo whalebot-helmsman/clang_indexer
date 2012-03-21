@@ -29,7 +29,8 @@ add_to_index() {
     INDEX_FILE=`echo ${1}.i.gz | tr "/" "%"`
     echo "Adding '`filename_for_user $1`'"
     clic_add index.db $INDEX_FILE $ADD_CXX_FLAGS $1 2>&1 |
-        grep -v "'linker' input unused when '-fsyntax-only' is present"
+        grep -v "'linker' input unused when '-fsyntax-only' is present" |
+        sed 's/^/\t/'
 }
 
 remove_from_index() {
